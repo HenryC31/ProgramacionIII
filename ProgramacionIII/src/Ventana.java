@@ -25,6 +25,12 @@ public class Ventana extends JFrame {
 	}
 
 	private void iniciarComponentes() {
+
+		JPanel login = new JPanel();
+		login.setSize(this.getWidth() / 2, this.getHeight());
+		login.setBackground(Color.magenta);
+		login.setLayout(null);
+
 		JLabel login_tag = new JLabel("ACCEDER", 0);
 		login_tag.setVisible(true);
 		login_tag.setSize(220, 70);
@@ -35,17 +41,12 @@ public class Ventana extends JFrame {
 		login_tag.setBackground(Color.red);
 		this.add(login_tag);
 
-		JPanel login = new JPanel();
-		login.setSize(this.getWidth() / 2, this.getHeight());
-		login.setBackground(Color.magenta);
-		login.setLayout(null);
-		this.add(login);
-
 		JPanel registro = new JPanel();
 		registro.setSize(this.getWidth() / 2, this.getHeight());
 		registro.setLocation(500, 1);
 		registro.setBackground(Color.gray);
 		// this.getContentPane().add(registro);
+		this.add(login);
 	}
 
 }
