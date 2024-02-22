@@ -8,9 +8,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -26,7 +31,7 @@ public class Ventana extends JFrame {
 
 	public Ventana() {
 		this.setVisible(true);
-		this.setSize(1000, 650);
+		this.setSize(1000, 700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -36,8 +41,9 @@ public class Ventana extends JFrame {
 
 	private void iniciarComponentes() {
 
-		this.login();
-		this.registro();
+		this.admin();
+		// this.login();
+		// this.registro();
 		this.repaint();
 		// this.validate();
 	}
@@ -193,4 +199,100 @@ public class Ventana extends JFrame {
 
 	}
 
+	public void admin() {
+
+		// Añadir panel
+		JPanel admin = new JPanel();
+		admin.setSize(this.getWidth(), this.getHeight());
+		admin.setLocation(0, 0);
+		admin.setLayout(null);
+		admin.setBackground(Color.decode("#6786E7"));
+		// Añadir Menú y Opciones
+		JMenuBar barra = new JMenuBar();
+		JMenu menu_file = new JMenu("Archivo");
+		barra.add(menu_file);
+		JMenuItem open_item = new JMenuItem("Abrir Archivo ...");
+		menu_file.add(open_item);
+		JMenuItem create_item = new JMenuItem("Crear Archivo ...");
+		menu_file.add(create_item);
+		this.setJMenuBar(barra);
+
+		// Contenido Panel
+
+		JLabel users_tag = new JLabel("Usuarios", 0);
+		users_tag.setBounds(350, 20, 300, 80);
+		users_tag.setOpaque(true);
+		users_tag.setFont(new Font("Marker Felt", Font.BOLD, 40));
+		admin.add(users_tag);
+
+		JLabel title_widget = new JLabel("Total de Usuarios", 0);
+		title_widget.setBounds(42, 130, 300, 40);
+		title_widget.setFont(new Font("Marker Felt", Font.BOLD, 20));
+		title_widget.setForeground(Color.white);
+		admin.add(title_widget);
+
+		JLabel content_widget = new JLabel("100", 0);
+		content_widget.setBounds(42, 170, 300, 40);
+		content_widget.setFont(new Font("Marker Felt", Font.BOLD, 30));
+		content_widget.setForeground(Color.white);
+		admin.add(content_widget);
+
+		JLabel widget = new JLabel("");
+		widget.setBounds(40, 120, 315, 100);
+		widget.setOpaque(true);
+		widget.setBackground(Color.black);
+		admin.add(widget);
+
+		JButton exportar = new JButton("Exportar");
+		exportar.setBounds(740, 230, 100, 40);
+		exportar.setFont(new Font("Marker Felt", Font.PLAIN, 17));
+		admin.add(exportar);
+
+		JButton add_user = new JButton("Agregar");
+		add_user.setBounds(860, 230, 100, 40);
+		add_user.setFont(exportar.getFont());
+		admin.add(add_user);
+
+		String titles[] = { "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" };
+		String data[][] = { { "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" },
+				{ "No. Control", "Nombre", "Apellidos", "Semestre", "Promedio", "Acciones" }, };
+
+		JTable tabla = new JTable(data, titles);
+		JScrollPane scroll_tabla = new JScrollPane(tabla);
+		scroll_tabla.setBounds(40, 290, 920, 400);
+		admin.add(scroll_tabla);
+
+		this.add(admin);
+	}
 }
