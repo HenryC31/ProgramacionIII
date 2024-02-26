@@ -30,22 +30,210 @@ public class Ventana extends JFrame {
 	// String en constructor
 
 	public Ventana() {
-		this.setVisible(true);
-		this.setSize(1000, 700);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
 
+		this.ventanaCalculadora();
+		// this.ventanaRegistros();
 		this.iniciarComponentes();
 	}
 
 	private void iniciarComponentes() {
 
-		this.admin();
+		this.calculadora();
+		// this.admin();
 		// this.login();
 		// this.registro();
 		this.repaint();
-		// this.validate();
+		this.validate();
+	}
+
+	public void ventanaCalculadora() {
+		this.setTitle("Calculadora");
+		this.setVisible(true);
+		this.setSize(400, 470);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(null);
+	}
+
+	public void calculadora() {
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, this.getWidth(), this.getHeight());
+		panel.setOpaque(true);
+		panel.setLayout(null);
+		panel.setBackground(Color.black);
+
+		JLabel operaciones = new JLabel("4,580,000", 0);
+		operaciones.setBounds(10, 10, (panel.getWidth() - 32), 60);
+		operaciones.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		operaciones.setForeground(Color.white);
+		operaciones.setFont(new Font("", Font.BOLD, 20));
+		panel.add(operaciones);
+
+		JButton boton_ce = new JButton("CE");
+		boton_ce.setBounds(10, 85, 84, 60);
+		boton_ce.setOpaque(true);
+		boton_ce.setBackground(Color.gray);
+		boton_ce.setFont(new Font("", Font.BOLD, 16));
+		boton_ce.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_ce);
+
+		JLabel espacio_vacio = new JLabel();
+		espacio_vacio.setBounds(104, 85, 275, 60);
+		espacio_vacio.setOpaque(true);
+		espacio_vacio.setBackground(Color.gray);
+		espacio_vacio.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(espacio_vacio);
+
+		JButton boton_7 = new JButton("7");
+		boton_7.setBounds(10, 155, 84, 60);
+		boton_7.setOpaque(true);
+		boton_7.setForeground(Color.white);
+		boton_7.setFont(new Font("", Font.BOLD, 16));
+		boton_7.setBackground(Color.darkGray);
+		boton_7.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_7);
+
+		JButton boton_8 = new JButton("8");
+		boton_8.setBounds(104, 155, 84, 60);
+		boton_8.setOpaque(true);
+		boton_8.setForeground(Color.white);
+		boton_8.setFont(new Font("", Font.BOLD, 16));
+		boton_8.setBackground(Color.darkGray);
+		boton_8.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_8);
+
+		JButton boton_9 = new JButton("9");
+		boton_9.setBounds(199, 155, 84, 60);
+		boton_9.setOpaque(true);
+		boton_9.setForeground(Color.white);
+		boton_9.setFont(new Font("", Font.BOLD, 16));
+		boton_9.setBackground(Color.darkGray);
+		boton_9.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_9);
+
+		JButton boton_division = new JButton("/");
+		boton_division.setBounds(294, 155, 84, 60);
+		boton_division.setOpaque(true);
+		boton_division.setForeground(Color.white);
+		boton_division.setBackground(Color.decode("#D2802B"));
+		boton_division.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_division);
+
+		JButton boton_4 = new JButton("4");
+		boton_4.setBounds(10, 225, 84, 60);
+		boton_4.setOpaque(true);
+		boton_4.setForeground(Color.white);
+		boton_4.setFont(new Font("", Font.BOLD, 16));
+		boton_4.setBackground(Color.darkGray);
+		boton_4.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_4);
+
+		JButton boton_5 = new JButton("5");
+		boton_5.setBounds(104, 225, 84, 60);
+		boton_5.setOpaque(true);
+		boton_5.setForeground(Color.white);
+		boton_5.setFont(new Font("", Font.BOLD, 16));
+		boton_5.setBackground(Color.darkGray);
+		boton_5.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_5);
+
+		JButton boton_6 = new JButton("6");
+		boton_6.setBounds(199, 225, 84, 60);
+		boton_6.setOpaque(true);
+		boton_6.setForeground(Color.white);
+		boton_6.setFont(new Font("", Font.BOLD, 16));
+		boton_6.setBackground(Color.darkGray);
+		boton_6.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_6);
+
+		JButton boton_mult = new JButton("*");
+		boton_mult.setBounds(294, 225, 84, 60);
+		boton_mult.setOpaque(true);
+		boton_mult.setForeground(Color.white);
+		boton_mult.setBackground(Color.decode("#D2802B"));
+		boton_mult.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_mult);
+
+		JButton boton_1 = new JButton("1");
+		boton_1.setBounds(10, 295, 84, 60);
+		boton_1.setOpaque(true);
+		boton_1.setForeground(Color.white);
+		boton_1.setFont(new Font("", Font.BOLD, 16));
+		boton_1.setBackground(Color.darkGray);
+		boton_1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_1);
+
+		JButton boton_2 = new JButton("2");
+		boton_2.setBounds(104, 295, 84, 60);
+		boton_2.setOpaque(true);
+		boton_2.setForeground(Color.white);
+		boton_2.setFont(new Font("", Font.BOLD, 16));
+		boton_2.setBackground(Color.darkGray);
+		boton_2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_2);
+
+		JButton boton_3 = new JButton("3");
+		boton_3.setBounds(199, 295, 84, 60);
+		boton_3.setOpaque(true);
+		boton_3.setForeground(Color.white);
+		boton_3.setFont(new Font("", Font.BOLD, 16));
+		boton_3.setBackground(Color.darkGray);
+		boton_3.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_3);
+
+		JButton boton_resta = new JButton("-");
+		boton_resta.setBounds(294, 295, 84, 60);
+		boton_resta.setOpaque(true);
+		boton_resta.setForeground(Color.white);
+		boton_resta.setBackground(Color.decode("#D2802B"));
+		boton_resta.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_resta);
+
+		JButton boton_0 = new JButton("0");
+		boton_0.setBounds(10, 365, 84, 60);
+		boton_0.setOpaque(true);
+		boton_0.setForeground(Color.white);
+		boton_0.setFont(new Font("", Font.BOLD, 16));
+		boton_0.setBackground(Color.darkGray);
+		boton_0.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_0);
+
+		JButton boton_punto = new JButton(".");
+		boton_punto.setBounds(104, 365, 84, 60);
+		boton_punto.setOpaque(true);
+		boton_punto.setForeground(Color.white);
+		boton_punto.setFont(new Font("", Font.BOLD, 16));
+		boton_punto.setBackground(Color.darkGray);
+		boton_punto.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_punto);
+
+		JButton boton_igual = new JButton("=");
+		boton_igual.setBounds(199, 365, 84, 60);
+		boton_igual.setOpaque(true);
+		boton_igual.setForeground(Color.white);
+		boton_igual.setBackground(Color.decode("#D2802B"));
+		boton_igual.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_igual);
+
+		JButton boton_suma = new JButton("+");
+		boton_suma.setBounds(294, 365, 84, 60);
+		boton_suma.setOpaque(true);
+		boton_suma.setForeground(Color.white);
+		boton_suma.setBackground(Color.decode("#D2802B"));
+		boton_suma.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		panel.add(boton_suma);
+
+		this.add(panel);
+	}
+
+	public void ventanaRegistros() {
+		this.setVisible(true);
+		this.setSize(1000, 700);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(null);
 	}
 
 	public void registro() {
