@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -31,17 +33,18 @@ public class Ventana extends JFrame {
 
 	public Ventana() {
 
-		this.ventanaCalculadora();
-		// this.ventanaRegistros();
+		// this.ventanaCalculadora();
+		this.ventanaRegistros();
 		this.iniciarComponentes();
 	}
 
 	private void iniciarComponentes() {
 
-		this.calculadora();
+		// this.calculadora();
 		// this.admin();
 		// this.login();
 		// this.registro();
+		this.user_login();
 		this.repaint();
 		this.validate();
 	}
@@ -336,6 +339,102 @@ public class Ventana extends JFrame {
 		this.add(registro);
 	}
 
+	public void user_login() {
+		this.setTitle("User Login");
+
+		JPanel login_panel = new JPanel();
+		login_panel.setSize(this.getWidth(), this.getHeight());
+		login_panel.setBackground(Color.decode("#294296"));
+		login_panel.setLayout(null);
+
+		JLabel login_tag = new JLabel("User Login", 0);
+		login_tag.setBounds(250, 10, 500, 100);
+		// login_tag.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		login_tag.setForeground(Color.white);
+		login_tag.setFont(new Font("Britannic", Font.ITALIC, 40));
+		login_panel.add(login_tag);
+
+		JLabel acc_widget = new JLabel();
+		acc_widget.setBounds(190, 130, 630, 400);
+		acc_widget.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		acc_widget.setOpaque(true);
+		acc_widget.setBackground(Color.decode("#203274"));
+
+		JLabel acc_tag = new JLabel("My Account", 0);
+		acc_tag.setBounds(250, 130, 500, 100);
+		acc_tag.setForeground(Color.decode("#ECEA6A"));
+		acc_tag.setFont(new Font("Britannic", Font.ITALIC, 52));
+		login_panel.add(acc_tag);
+
+		JLabel user_tag = new JLabel("ENTER YOUR USERNAME");
+		user_tag.setBounds(300, 240, 250, 50);
+		user_tag.setForeground(Color.WHITE);
+		user_tag.setFont(new Font("Britannic", Font.ITALIC, 18));
+		login_panel.add(user_tag);
+
+		JTextField user_text = new JTextField();
+		user_text.setBounds(300, 285, 386, 40);
+		user_text.setFont(new Font("Britannic", Font.ITALIC, 16));
+		login_panel.add(user_text);
+
+		JLabel password_tag = new JLabel("ENTER YOUR PASSWORD");
+		password_tag.setBounds(300, 360, 250, 50);
+		password_tag.setForeground(Color.WHITE);
+		password_tag.setFont(new Font("Britannic", Font.ITALIC, 18));
+		login_panel.add(password_tag);
+
+		JPasswordField password_text = new JPasswordField();
+		password_text.setBounds(300, 405, 386, 40);
+		password_text.setFont(new Font("Britannic", Font.ITALIC, 16));
+		login_panel.add(password_text);
+
+		/*
+		 * JLabel pass_tag = new JLabel("Password"); pass_tag.setBounds(300, 405, 386,
+		 * 40); pass_tag.setForeground(Color.LIGHT_GRAY); pass_tag.setOpaque(false);
+		 * pass_tag.setFont(new Font("Britannic", Font.ITALIC, 16));
+		 * login_panel.add(pass_tag);
+		 */
+
+		ImageIcon imagen_usuario = new ImageIcon(getClass().getResource("user.png"));
+		JLabel user_img = new JLabel(" ");
+		user_img.setBounds(260, 292, 30, 30);
+		user_img.setIcon(new ImageIcon(imagen_usuario.getImage().getScaledInstance(user_img.getWidth(),
+				user_img.getHeight(), Image.SCALE_SMOOTH)));
+		login_panel.add(user_img);
+
+		ImageIcon imagen_password = new ImageIcon(getClass().getResource("lock.png"));
+		JLabel password_img = new JLabel(" ");
+		password_img.setBounds(260, 412, 30, 30);
+		password_img.setIcon(new ImageIcon(imagen_password.getImage().getScaledInstance(password_img.getWidth(),
+				password_img.getHeight(), Image.SCALE_SMOOTH)));
+		login_panel.add(password_img);
+
+		JButton login_btn = new JButton("Login");
+		login_btn.setBounds(384, 467, 230, 40);
+		login_btn.setOpaque(true);
+		login_btn.setBackground(Color.decode("#ECEA6A"));
+		login_btn.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		login_btn.setFont(new Font("Britannic", Font.ITALIC, 22));
+		login_panel.add(login_btn);
+
+		JLabel createacc_tag = new JLabel("Don´t have an account?", 0);
+		createacc_tag.setBounds(374, 540, 250, 40);
+		createacc_tag.setForeground(Color.decode("#ECEA6A"));
+		createacc_tag.setFont(new Font("Britannic", Font.ITALIC, 18));
+		login_panel.add(createacc_tag);
+
+		JButton createacc_btn = new JButton("Sign Up");
+		createacc_btn.setBounds(435, 580, 130, 35);
+		createacc_btn.setOpaque(true);
+		createacc_btn.setBackground(Color.decode("#ECEA6A"));
+		createacc_btn.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		createacc_btn.setFont(new Font("Britannic", Font.ITALIC, 18));
+		login_panel.add(createacc_btn);
+
+		login_panel.add(acc_widget);
+		this.add(login_panel);
+	}
+
 	public void login() {
 		JPanel login = new JPanel();
 		login.setSize((this.getWidth() / 2), (this.getHeight()));
@@ -350,6 +449,11 @@ public class Ventana extends JFrame {
 		login_tag.setOpaque(true);
 		login_tag.setBackground(Color.red);
 		login.add(login_tag);
+
+		JLabel logo = new JLabel();
+		logo.setIcon(new ImageIcon(getClass().getResource("snowman.png")));
+		logo.setBounds(10, 10, 512, 512);
+		login.add(logo);
 
 		JLabel id_tag = new JLabel("Usuario:");
 		id_tag.setBounds(80, 120, 120, 40);
