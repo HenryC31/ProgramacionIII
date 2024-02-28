@@ -1,8 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,8 +36,12 @@ public class Ventana extends JFrame {
 
 	public Ventana() {
 
-		// this.ventanaCalculadora();
-		this.ventanaRegistros();
+		this.setVisible(true);
+		this.setSize(1000, 700);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(null);
+
 		this.iniciarComponentes();
 	}
 
@@ -44,22 +51,71 @@ public class Ventana extends JFrame {
 		// this.admin();
 		// this.login();
 		// this.registro();
-		this.user_login();
+		// this.user_login();
+		this.calculadora_clase();
 		this.repaint();
 		this.validate();
 	}
 
-	public void ventanaCalculadora() {
-		this.setTitle("Calculadora");
-		this.setVisible(true);
-		this.setSize(400, 470);
-		this.setResizable(false);
+	public void calculadora_clase() {
+		this.setSize(480, 650);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
+		JPanel panel = new JPanel();
+		panel.setSize(this.getWidth(), this.getHeight());
+		panel.setBackground(Color.decode("#FFA474"));
+		panel.setLayout(new BorderLayout());
+
+		JLabel text = new JLabel("100.00", 4);
+		text.setOpaque(true);
+		text.setBackground(Color.white);
+		text.setFont(new Font("", Font.BOLD, 30));
+		panel.add(text, BorderLayout.NORTH);
+
+		JPanel centro = new JPanel();
+		centro.setOpaque(true);
+		centro.setBackground(Color.decode("#74C6FF"));
+		centro.setLayout(new GridLayout(4, 3, 10, 10));
+		panel.add(centro, BorderLayout.CENTER);
+
+		String btns[] = { "7", "8", "9", "6", "5", "4", "3", "2", "1", "0", ".", "/" };
+		for (int i = 0; i < 12; i++) {
+			JButton boton = new JButton(btns[i]);
+			centro.add(boton);
+		}
+
+		JPanel east = new JPanel();
+		east.setOpaque(true);
+		east.setBackground(Color.decode("#74FFAD"));
+		east.setLayout(new GridLayout(3, 1));
+		panel.add(east, BorderLayout.EAST);
+
+		String btns2[] = { "+", "-", "=" };
+		for (int i = 0; i < 3; i++) {
+			JButton boton = new JButton(btns2[i]);
+			east.add(boton);
+		}
+
+		JPanel west = new JPanel();
+		west.setOpaque(true);
+		west.setBackground(Color.black);
+		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
+		panel.add(west, BorderLayout.WEST);
+
+		String btns3[] = { "MC", "M+", "*" };
+		for (int i = 0; i < 3; i++) {
+			JButton boton = new JButton(btns3[i]);
+			west.add(boton);
+		}
+
+		this.add(panel);
+
 	}
 
 	public void calculadora() {
+
+		this.setTitle("Calculadora");
+		this.setVisible(true);
+		this.setSize(400, 470);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, this.getWidth(), this.getHeight());
@@ -229,14 +285,6 @@ public class Ventana extends JFrame {
 		panel.add(boton_suma);
 
 		this.add(panel);
-	}
-
-	public void ventanaRegistros() {
-		this.setVisible(true);
-		this.setSize(1000, 700);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
 	}
 
 	public void registro() {
