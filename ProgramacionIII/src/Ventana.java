@@ -1,9 +1,16 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -47,19 +54,130 @@ public class Ventana extends JFrame {
 
 	private void iniciarComponentes() {
 
-		// this.calculadora();
-		// this.admin();
-		// this.login();
-		// this.registro();
-		// this.user_login();
-		this.calculadora_clase();
+//		this.calculadora();
+//		this.admin();
+//		this.login();
+//		this.registro();
+//		this.user_login();
+//		this.calculadora_clase();
+//		this.interes();
 		this.repaint();
 		this.validate();
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+
+		Graphics2D g2d = (Graphics2D) g;
+
+		g2d.setColor(Color.blue);
+		g2d.fillRect(50, 50, 200, 100);
+		g2d.clearRect(100, 100, 100, 100);
+		g2d.drawArc(300, 300, 100, 100, 45, 180);
+		g2d.setColor(Color.green);
+		g2d.drawLine(0, 0, 500, 500);
+		g2d.drawOval(300, 300, 100, 200);
+		g2d.setColor(Color.black);
+		g2d.fillOval(400, 300, 100, 200);
+
+		int xPoints[] = { 500, 550, 400 };
+		int yPoints[] = { 100, 200, 250 };
+
+		g2d.drawPolygon(xPoints, yPoints, 3);
+
+		g2d.setFont(new Font("Bradley Hand ITC", Font.BOLD, 40));
+		g2d.drawString("Hola", 400, 100);
+		g2d.setStroke(new BasicStroke(10));
+		g2d.drawRoundRect(500, 150, 250, 200, 5, 5);
+
+		File path = new File("src/snowman.png");
+		try {
+			BufferedImage img = ImageIO.read(path);
+			g2d.drawImage(img, 400, 200, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void bordes(JPanel panel) {
+		JLabel izquierda = new JLabel("    ");
+		izquierda.setSize(300, 1);
+		panel.add(izquierda, BorderLayout.WEST);
+
+		JLabel derecha = new JLabel("    ");
+		derecha.setSize(300, 1);
+		panel.add(derecha, BorderLayout.EAST);
+
+		JLabel abajo = new JLabel("    ");
+		abajo.setSize(300, 1);
+		panel.add(abajo, BorderLayout.SOUTH);
+
+	}
+
+	public void interes() {
+		this.setSize((this.getWidth() / 2), this.getHeight());
+		this.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, this.getWidth() - 15, this.getHeight() - 38);
+		panel.setLayout(new BorderLayout());
+
+		JLabel interes_tag = new JLabel("   Interes");
+		interes_tag.setForeground(Color.red);
+		interes_tag.setFont(new Font("", Font.BOLD, 24));
+		panel.add(interes_tag, BorderLayout.NORTH);
+
+		JLabel izquierda = new JLabel("    ");
+		izquierda.setSize(300, 1);
+		panel.add(izquierda, BorderLayout.WEST);
+
+		JLabel derecha = new JLabel("    ");
+		derecha.setSize(300, 1);
+		panel.add(derecha, BorderLayout.EAST);
+
+		JLabel abajo = new JLabel("    ");
+		abajo.setSize(300, 1);
+		panel.add(abajo, BorderLayout.SOUTH);
+
+		JPanel panel_centro = new JPanel();
+		panel_centro.setBackground(Color.decode("#74FFAD"));
+		panel_centro.setLayout(new GridLayout(2, 1, 0, 20));
+		panel.add(panel_centro, BorderLayout.CENTER);
+
+		JPanel panel_calcular = new JPanel();
+		panel_calcular.setLayout(new BorderLayout());
+//		panel_calcular.setSize(panel_centro.getWidth(), 40);
+		panel_calcular.setBackground(Color.decode("#74FFAD"));
+
+		JLabel calcular_tag = new JLabel("Calcular");
+		calcular_tag.setFont(new Font("", Font.BOLD, 12));
+		panel_calcular.add(calcular_tag, BorderLayout.NORTH);
+		panel_centro.add(panel_calcular);
+
+		JPanel centro_calcular = new JPanel();
+		centro_calcular.setLayout(new GridLayout(3, 2));
+		centro_calcular.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		panel_calcular.add(centro_calcular, BorderLayout.CENTER);
+
+		JLabel espacio = new JLabel(" ");
+//		espacio.setSize(panel_centro.getWidth(), 40);
+		panel_centro.add(espacio);
+
+		JPanel panel_op = new JPanel();
+		panel_op.setBackground(Color.cyan);
+//		panel_op.setLayout(null);
+//		panel_op.setSize(panel_centro.getWidth(), 80);
+		panel_centro.add(panel_op);
+
+		this.add(panel);
 	}
 
 	public void calculadora_clase() {
 		this.setSize(480, 650);
 		this.setLocationRelativeTo(null);
+
 		JPanel panel = new JPanel();
 		panel.setSize(this.getWidth(), this.getHeight());
 		panel.setBackground(Color.decode("#FFA474"));
