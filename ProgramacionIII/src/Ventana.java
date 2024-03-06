@@ -1,4 +1,3 @@
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -6,11 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -71,35 +66,115 @@ public class Ventana extends JFrame {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		g2d.setColor(Color.blue);
-		g2d.fillRect(50, 50, 200, 100);
-		g2d.clearRect(100, 100, 100, 100);
-		g2d.drawArc(300, 300, 100, 100, 45, 180);
-		g2d.setColor(Color.green);
-		g2d.drawLine(0, 0, 500, 500);
-		g2d.drawOval(300, 300, 100, 200);
-		g2d.setColor(Color.black);
-		g2d.fillOval(400, 300, 100, 200);
+		// Cielo
+		g2d.setColor(Color.decode("#46B0DE"));
+		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+		// Piso
+		g2d.setColor(Color.decode("#706018"));
+		g2d.fillRect(0, 630, this.getWidth(), 70);
+		g2d.setColor(Color.decode("#C0A161"));
+		g2d.fillRect(0, 595, this.getWidth(), 35);
+		g2d.setColor(Color.decode("#79A545"));
+		g2d.fillRect(0, 545, this.getWidth(), 50);
+		g2d.setColor(Color.decode("#365F05"));
+		g2d.fillRect(0, 525, this.getWidth(), 25);
 
-		int xPoints[] = { 500, 550, 400 };
-		int yPoints[] = { 100, 200, 250 };
+		// Base
+		g2d.setColor(Color.decode("#616161"));
+		g2d.fillRect(150, 485, 700, 40);
 
-		g2d.drawPolygon(xPoints, yPoints, 3);
+		// Pared Casa
+		g2d.setColor(Color.decode("#FFDB90"));
+		g2d.fillRect(200, 185, 600, 300);
 
-		g2d.setFont(new Font("Bradley Hand ITC", Font.BOLD, 40));
-		g2d.drawString("Hola", 400, 100);
-		g2d.setStroke(new BasicStroke(10));
-		g2d.drawRoundRect(500, 150, 250, 200, 5, 5);
-
-		File path = new File("src/snowman.png");
-		try {
-			BufferedImage img = ImageIO.read(path);
-			g2d.drawImage(img, 400, 200, null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// Tablones atravesados
+		g2d.setColor(Color.decode("#706018"));
+		int y = 200;
+		for (int i = 0; i < 7; i++) {
+			g2d.fillRect(200, y, 600, 5);
+			y += 43;
 		}
+		// Puerta
+		g2d.fillRect(250, 220, 150, 265);
+		g2d.setColor(Color.decode("#B07806"));
+		g2d.fillRect(260, 230, 130, 250);
+
+		// Ventana
+		g2d.setColor(Color.decode("#AF0606"));
+		g2d.fillRect(575, 220, 160, 160);
+
+		// Base ventana
+		g2d.setColor(Color.DARK_GRAY);
+		g2d.fillRect(550, 380, 210, 25);
+
+		int x;
+//		Vidrios Ventana
+		g2d.setColor(Color.white);
+		y = 235;
+		for (int i = 0; i < 2; i++) {
+			x = 590;
+			for (int j = 0; j < 2; j++) {
+				g2d.fillRect(x, y, 60, 60);
+				x += 70;
+			}
+			y += 70;
+		}
+		// Techo
+		g2d.setColor(Color.decode("#AF0606"));
+		int coordX[] = { 150, 400, 850 };
+		int coordY[] = { 185, 0, 185 };
+		g2d.fillPolygon(coordX, coordY, 3);
+
+		// Cerco vertical
+		g2d.setColor(Color.decode("#D89A34"));
+		for (x = 30; x < this.getWidth(); x += 40) {
+			g2d.fillRect(x, 405, 8, 120);
+		}
+		// Cerco horizontal
+		for (y = 420; y < 520; y += 40) {
+			g2d.fillRect(0, y, this.getWidth(), 10);
+		}
+
+		// Perilla puerta
+		g2d.setColor(Color.white);
+		g2d.fillOval(370, 370, 15, 15);
 	}
+
+//	@Override
+//	public void paint(Graphics g) {
+//		super.paint(g);
+//
+//		Graphics2D g2d = (Graphics2D) g;
+//
+//		g2d.setColor(Color.blue);
+//		g2d.fillRect(50, 50, 200, 100);
+//		g2d.clearRect(100, 100, 100, 100);
+//		g2d.drawArc(300, 300, 100, 100, 45, 180);
+//		g2d.setColor(Color.green);
+//		g2d.drawLine(0, 0, 500, 500);
+//		g2d.drawOval(300, 300, 100, 200);
+//		g2d.setColor(Color.black);
+//		g2d.fillOval(400, 300, 100, 200);
+//
+//		int xPoints[] = { 500, 550, 400 };
+//		int yPoints[] = { 100, 200, 250 };
+//
+//		g2d.drawPolygon(xPoints, yPoints, 3);
+//
+//		g2d.setFont(new Font("Bradley Hand ITC", Font.BOLD, 40));
+//		g2d.drawString("Hola", 400, 100);
+//		g2d.setStroke(new BasicStroke(10));
+//		g2d.drawRoundRect(500, 150, 250, 200, 5, 5);
+//
+//		File path = new File("src/snowman.png");
+//		try {
+//			BufferedImage img = ImageIO.read(path);
+//			g2d.drawImage(img, 400, 200, null);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	public void bordes(JPanel panel) {
 		JLabel izquierda = new JLabel("    ");
