@@ -1,3 +1,4 @@
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -5,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -26,7 +29,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,12 +42,13 @@ public class Ventana extends JFrame {
 	public Ventana() {
 
 		this.setVisible(true);
-		this.setSize(1000, 700);
+		this.setSize(1250, 700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 
 		this.iniciarComponentes();
+		this.addMouseListener(this);
 	}
 
 	private void iniciarComponentes() {
@@ -60,85 +64,257 @@ public class Ventana extends JFrame {
 		this.validate();
 	}
 
-	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 
 		Graphics2D g2d = (Graphics2D) g;
+//		Cielo
 
-		// Cielo
-		g2d.setColor(Color.decode("#46B0DE"));
+		g2d.setColor(Color.decode("#a2f0ff"));
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-		// Piso
-		g2d.setColor(Color.decode("#706018"));
-		g2d.fillRect(0, 630, this.getWidth(), 70);
-		g2d.setColor(Color.decode("#C0A161"));
-		g2d.fillRect(0, 595, this.getWidth(), 35);
-		g2d.setColor(Color.decode("#79A545"));
-		g2d.fillRect(0, 545, this.getWidth(), 50);
-		g2d.setColor(Color.decode("#365F05"));
-		g2d.fillRect(0, 525, this.getWidth(), 25);
 
-		// Base
-		g2d.setColor(Color.decode("#616161"));
-		g2d.fillRect(150, 485, 700, 40);
-
-		// Pared Casa
-		g2d.setColor(Color.decode("#FFDB90"));
-		g2d.fillRect(200, 185, 600, 300);
-
-		// Tablones atravesados
-		g2d.setColor(Color.decode("#706018"));
-		int y = 200;
-		for (int i = 0; i < 7; i++) {
-			g2d.fillRect(200, y, 600, 5);
-			y += 43;
-		}
-		// Puerta
-		g2d.fillRect(250, 220, 150, 265);
-		g2d.setColor(Color.decode("#B07806"));
-		g2d.fillRect(260, 230, 130, 250);
-
-		// Ventana
-		g2d.setColor(Color.decode("#AF0606"));
-		g2d.fillRect(575, 220, 160, 160);
-
-		// Base ventana
+//		Sombra grande
+		g2d.setColor(Color.black);
+		g2d.fillRoundRect(600, 265, 100, 350, 40, 40);
+//		Cuadro negro grande
+		g2d.setColor(Color.black);
+		g2d.fillRoundRect(410, 230, 250, 385, 40, 40);
+//		Cuadro azul grande
+		g2d.setColor(Color.decode("#71c2ff"));
+		g2d.fillRoundRect(415, 235, 240, 375, 40, 40);
+//		Sombra azul vertical
+		g2d.setColor(Color.decode("#0094e5"));
+		g2d.fillRoundRect(642, 238, 12, 370, 10, 20);
+		// Tuercas cuadro azul
+		g2d.setColor(Color.black);
+		g2d.fillOval(420, 240, 28, 28);
+		g2d.fillOval(620, 240, 28, 28);
+		g2d.fillOval(620, 580, 28, 28);
+		g2d.setColor(Color.gray);
+		g2d.fillOval(424, 244, 20, 20);
+		g2d.fillOval(624, 244, 20, 20);
+		g2d.fillOval(624, 584, 20, 20);
+		g2d.setColor(Color.black);
+		g2d.drawLine(265, 400, 280, 385);
+		g2d.drawLine(265, 590, 280, 575);
+		g2d.drawLine(465, 400, 480, 385);
+//		Sombra rosa chica
+		g2d.setColor(Color.black);
+		g2d.fillRoundRect(410, 410, 130, 200, 40, 40);
+//		Cuadro negro chico
+		g2d.setColor(Color.black);
+		g2d.fillRoundRect(250, 365, 250, 250, 40, 40);
+//		Cuadro rosa
+		g2d.setColor(Color.decode("#ffc0b5"));
+		g2d.fillRoundRect(255, 370, 240, 240, 40, 40);
+//		Sombra rosa vertical
+		g2d.setColor(Color.decode("#f68b64"));
+		g2d.fillRoundRect(482, 375, 12, 230, 20, 20);
+//		Sombra rosa
+		g2d.setColor(Color.decode("#e69f81"));
+		g2d.fillRoundRect(260, 600, 230, 10, 20, 20);
+		// Tuercas rosa
+		g2d.setColor(Color.black);
+		g2d.fillOval(260, 380, 28, 28);
+		g2d.fillOval(260, 570, 28, 28);
+		g2d.fillOval(460, 380, 28, 28);
+		g2d.fillOval(460, 570, 28, 28);
+		g2d.setColor(Color.gray);
+		g2d.fillOval(264, 384, 20, 20);
+		g2d.fillOval(264, 574, 20, 20);
+		g2d.fillOval(464, 384, 20, 20);
+		g2d.fillOval(464, 574, 20, 20);
+		g2d.setColor(Color.black);
+		g2d.drawLine(265, 400, 280, 385);
+		g2d.drawLine(265, 590, 280, 575);
+		g2d.drawLine(465, 400, 480, 385);
+		g2d.drawLine(465, 590, 480, 575);
+//		Piso gris
 		g2d.setColor(Color.DARK_GRAY);
-		g2d.fillRect(550, 380, 210, 25);
+		g2d.fillRect(0, 610, this.getWidth(), 80);
+//		Piso rosa
+		g2d.setColor(Color.decode("#FFB69C"));
+		g2d.fillRect(0, 615, this.getWidth(), 20);
+//		Piso hasta abajo
+		g2d.setColor(Color.decode("#E88750"));
+		g2d.fillRoundRect(0, 635, this.getWidth(), 55, 50, 50);
+//		Piso café osucro
+		g2d.setColor(Color.decode("#823F00"));
+		g2d.fillRect(0, 635, this.getWidth(), 10);
 
-		int x;
-//		Vidrios Ventana
-		g2d.setColor(Color.white);
-		y = 235;
-		for (int i = 0; i < 2; i++) {
-			x = 590;
-			for (int j = 0; j < 2; j++) {
-				g2d.fillRect(x, y, 60, 60);
-				x += 70;
-			}
-			y += 70;
-		}
-		// Techo
-		g2d.setColor(Color.decode("#AF0606"));
-		int coordX[] = { 150, 400, 850 };
-		int coordY[] = { 185, 0, 185 };
-		g2d.fillPolygon(coordX, coordY, 3);
+//		Cuadros negros bloques
+		g2d.setColor(Color.black);
+		g2d.fillRoundRect(50, 270, 85, 85, 10, 10);
+		g2d.fillRoundRect(175, 100, 170, 85, 10, 10);
+		g2d.fillRoundRect(1072, 173, 85, 85, 10, 10);
+//		Bloques dentro
+		g2d.setColor(Color.decode("#E88750"));
+		g2d.fillRoundRect(1078, 176, 75, 75, 10, 10);
+		g2d.fillRoundRect(55, 273, 75, 75, 10, 10);
+		g2d.fillRoundRect(182, 105, 75, 75, 10, 10);
+		g2d.fillRoundRect(265, 105, 75, 75, 10, 10);
+		// Tuercas bloques
+		// Bloque
+		g2d.setColor(Color.black);
+		g2d.fillOval(58, 277, 6, 10);
+		g2d.fillOval(120, 277, 6, 10);
+		g2d.fillOval(58, 330, 6, 10);
+		g2d.fillOval(120, 330, 6, 10);
+		// Bloque 2 y 3
+		g2d.fillOval(185, 109, 6, 10);
+		g2d.fillOval(247, 109, 6, 10);
+		g2d.fillOval(185, 162, 6, 10);
+		g2d.fillOval(247, 162, 6, 10);
+		g2d.fillOval(268, 109, 6, 10);
+		g2d.fillOval(330, 109, 6, 10);
+		g2d.fillOval(268, 162, 6, 10);
+		g2d.fillOval(330, 162, 6, 10);
+		// Bloque 4
+		g2d.fillOval(1081, 180, 6, 10);
+		g2d.fillOval(1143, 180, 6, 10);
+		g2d.fillOval(1081, 233, 6, 10);
+		g2d.fillOval(1143, 233, 6, 10);
 
-		// Cerco vertical
-		g2d.setColor(Color.decode("#D89A34"));
-		for (x = 30; x < this.getWidth(); x += 40) {
-			g2d.fillRect(x, 405, 8, 120);
-		}
-		// Cerco horizontal
-		for (y = 420; y < 520; y += 40) {
-			g2d.fillRect(0, y, this.getWidth(), 10);
-		}
+//		Cuadro negro verde
+		g2d.fillRoundRect(1000, 365, 280, 250, 40, 40);
+//		Cuadro verde
+		g2d.setColor(Color.decode("#00dd5b"));
+		g2d.fillRoundRect(1005, 370, 270, 240, 40, 40);
+//		Sombra cuadro verde
+		g2d.setColor(Color.decode("#0a601f"));
+		g2d.fillRoundRect(1010, 600, 270, 10, 20, 20);
+		// Tuercas Bloque Verde
+		g2d.setColor(Color.black);
+		g2d.fillOval(1010, 380, 28, 28);
+		g2d.fillOval(1010, 570, 28, 28);
+		g2d.setColor(Color.gray);
+		g2d.fillOval(1014, 384, 20, 20);
+		g2d.fillOval(1014, 574, 20, 20);
+		g2d.setColor(Color.black);
+		g2d.drawLine(1015, 400, 1032, 385);
+		g2d.drawLine(1015, 590, 1032, 575);
 
-		// Perilla puerta
-		g2d.setColor(Color.white);
-		g2d.fillOval(370, 370, 15, 15);
+//		Base tubo negro
+		g2d.setColor(Color.black);
+		g2d.fillRect(760, 425, 160, 190);
+		g2d.fillRect(750, 370, 180, 70);
+//		Base tubo verde
+		g2d.setColor(Color.decode("#008a00"));
+		g2d.fillRect(770, 445, 140, 160);
+		g2d.fillRect(760, 380, 160, 50);
+//		Reflejos tubo
+		g2d.setColor(Color.decode("#00e455"));
+		g2d.fillRect(770, 380, 5, 50);
+		g2d.fillRect(780, 445, 5, 160);
+
+		g2d.fillRect(780, 380, 10, 50);
+		g2d.fillRect(790, 445, 10, 160);
+
+		g2d.fillRect(800, 380, 3, 50);
+		g2d.fillRect(810, 445, 3, 160);
+
+		int x1 = 850;
+		int x2 = 845;
+		for (int i = 0; i < 3; i++) {
+			g2d.fillRect(x1, 380, 5, 50);
+			g2d.fillRect(x2, 445, 5, 160);
+			x1 += 10;
+			x2 += 10;
+		}
+		g2d.fillRect(910, 380, 5, 50);
+		g2d.fillRect(900, 445, 5, 160);
+
+		g2d.setColor(Color.black);
+		// Opacidad
+		float opacidad = 0.5f;
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacidad));
+		// Sombra en tubo arriba
+		g2d.fillRect(855, 380, 65, 50);
+		// Sombra en tubo abajo
+		g2d.fillRect(850, 445, 60, 160);
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
+
 	}
+
+//	@Override
+//	public void paint(Graphics g) {
+//		super.paint(g);
+//
+//		Graphics2D g2d = (Graphics2D) g;
+//
+//		// Cielo
+//		g2d.setColor(Color.decode("#46B0DE"));
+//		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+//		// Piso
+//		g2d.setColor(Color.decode("#706018"));
+//		g2d.fillRect(0, 630, this.getWidth(), 70);
+//		g2d.setColor(Color.decode("#C0A161"));
+//		g2d.fillRect(0, 595, this.getWidth(), 35);
+//		g2d.setColor(Color.decode("#79A545"));
+//		g2d.fillRect(0, 545, this.getWidth(), 50);
+//		g2d.setColor(Color.decode("#365F05"));
+//		g2d.fillRect(0, 525, this.getWidth(), 25);
+//
+//		// Base
+//		g2d.setColor(Color.decode("#616161"));
+//		g2d.fillRect(150, 485, 700, 40);
+//
+//		// Pared Casa
+//		g2d.setColor(Color.decode("#FFDB90"));
+//		g2d.fillRect(200, 185, 600, 300);
+//
+//		// Tablones atravesados
+//		g2d.setColor(Color.decode("#706018"));
+//		int y = 200;
+//		for (int i = 0; i < 7; i++) {
+//			g2d.fillRect(200, y, 600, 5);
+//			y += 43;
+//		}
+//		// Puerta
+//		g2d.fillRect(250, 220, 150, 265);
+//		g2d.setColor(Color.decode("#B07806"));
+//		g2d.fillRect(260, 230, 130, 250);
+//
+//		// Ventana
+//		g2d.setColor(Color.decode("#AF0606"));
+//		g2d.fillRect(575, 220, 160, 160);
+//
+//		// Base ventana
+//		g2d.setColor(Color.DARK_GRAY);
+//		g2d.fillRect(550, 380, 210, 25);
+//
+//		int x;
+////		Vidrios Ventana
+//		g2d.setColor(Color.white);
+//		y = 235;
+//		for (int i = 0; i < 2; i++) {
+//			x = 590;
+//			for (int j = 0; j < 2; j++) {
+//				g2d.fillRect(x, y, 60, 60);
+//				x += 70;
+//			}
+//			y += 70;
+//		}
+//		// Techo
+//		g2d.setColor(Color.decode("#AF0606"));
+//		int coordX[] = { 150, 400, 850 };
+//		int coordY[] = { 185, 0, 185 };
+//		g2d.fillPolygon(coordX, coordY, 3);
+//
+//		// Cerco vertical
+//		g2d.setColor(Color.decode("#D89A34"));
+//		for (x = 30; x < this.getWidth(); x += 40) {
+//			g2d.fillRect(x, 405, 8, 120);
+//		}
+//		// Cerco horizontal
+//		for (y = 420; y < 520; y += 40) {
+//			g2d.fillRect(0, y, this.getWidth(), 10);
+//		}
+//
+//		// Perilla puerta
+//		g2d.setColor(Color.white);
+//		g2d.fillOval(370, 370, 15, 15);
+//	}
 
 //	@Override
 //	public void paint(Graphics g) {
@@ -827,5 +1003,36 @@ public class Ventana extends JFrame {
 		admin.add(scroll_tabla);
 
 		this.add(admin);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
