@@ -52,13 +52,57 @@ public class Ventana extends JFrame {
 
 //		this.calculadora();
 //		this.admin();
-		this.login();
-		this.registro();
+//		this.login();
+//		this.registro();
 //		this.user_login();
 //		this.calculadora_clase();
 //		this.interes();
+		this.botones();
 		this.repaint();
 		this.validate();
+	}
+
+	public void botones() {
+		this.setSize(500, 750);
+		this.setLocationRelativeTo(null);
+		this.setTitle("Botones");
+
+		JPanel panel_btn = new JPanel();
+		panel_btn.setSize(this.getWidth(), this.getHeight());
+		panel_btn.setLocation(0, 0);
+		panel_btn.setLayout(null);
+		panel_btn.setBackground(Color.decode("#6786E7"));
+
+		JButton boton = new JButton("Pushame");
+		boton.setBounds(50, 300, 400, 100);
+		boton.setFont(new Font("", Font.BOLD, 30));
+
+		boton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int x = (int) Math.floor(Math.random() * 450 + 1);
+				int y = (int) Math.floor(Math.random() * 620 + 1);
+
+				int w = (int) Math.floor(Math.random() * 120 + 1);
+				int h = (int) Math.floor(Math.random() * 120 + 1);
+
+				int r = (int) Math.floor(Math.random() * 255 + 1);
+				int g = (int) Math.floor(Math.random() * 255 + 1);
+				int b = (int) Math.floor(Math.random() * 255 + 1);
+
+				JButton otro_boton = new JButton("Pushame");
+				otro_boton.setOpaque(true);
+				otro_boton.setBackground(new Color(r, g, b));
+				otro_boton.setBounds(x, y, w, h);
+				panel_btn.add(otro_boton);
+
+				getContentPane().repaint();
+				getContentPane().revalidate();
+			}
+		});
+
+		panel_btn.add(boton);
+		this.add(panel_btn);
 	}
 
 	public void bordes(JPanel panel) {
