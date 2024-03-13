@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -73,6 +75,59 @@ public class Ventana extends JFrame {
 		panel_btn.setLocation(0, 0);
 		panel_btn.setLayout(null);
 		panel_btn.setBackground(Color.decode("#6786E7"));
+
+		panel_btn.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int w = (int) Math.floor(Math.random() * 120 + 1);
+				int h = (int) Math.floor(Math.random() * 120 + 1);
+
+				int r = (int) Math.floor(Math.random() * 255 + 1);
+				int g = (int) Math.floor(Math.random() * 255 + 1);
+				int b = (int) Math.floor(Math.random() * 255 + 1);
+
+				JButton otro_boton = new JButton(r + ", " + g + ", " + b);
+				otro_boton.setOpaque(true);
+				otro_boton.setBackground(new Color(r, g, b));
+				otro_boton.setBounds(e.getX(), e.getY(), w, h);
+				otro_boton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, otro_boton.getText());
+					}
+				});
+
+				panel_btn.add(otro_boton);
+
+				getContentPane().repaint();
+				getContentPane().revalidate();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		JButton boton = new JButton("Pushame");
 		boton.setBounds(50, 300, 400, 100);
@@ -818,35 +873,4 @@ public class Ventana extends JFrame {
 
 		this.add(admin);
 	}
-
-//	@Override
-//	public void mouseClicked(MouseEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-//		// TODO Auto-generated method stub
-//		System.out.println(e.getX());
-//		System.out.println(e.getY());
-//	}
-//
-//	@Override
-//	public void mouseReleased(MouseEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public void mouseEntered(MouseEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public void mouseExited(MouseEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
 }
