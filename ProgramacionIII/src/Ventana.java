@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -90,10 +91,17 @@ public class Ventana extends JFrame {
 				int g = (int) Math.floor(Math.random() * 255 + 1);
 				int b = (int) Math.floor(Math.random() * 255 + 1);
 
-				JButton otro_boton = new JButton("Pushame");
+				JButton otro_boton = new JButton(r + ", " + g + ", " + b);
 				otro_boton.setOpaque(true);
 				otro_boton.setBackground(new Color(r, g, b));
 				otro_boton.setBounds(x, y, w, h);
+				otro_boton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, otro_boton.getText());
+					}
+				});
+
 				panel_btn.add(otro_boton);
 
 				getContentPane().repaint();
