@@ -153,7 +153,8 @@ public class Ventana extends JFrame {
 				otro_boton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, otro_boton.getText());
+						panel_btn.remove(otro_boton);
+						getContentPane().repaint();
 					}
 				});
 
