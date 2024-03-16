@@ -1,10 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -29,10 +32,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
-
+	public JPanel panel;
 	// Componentes siempre tienen:
 	// Size
 	// Location
@@ -46,7 +49,7 @@ public class Ventana extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
-
+		this.addKeyListener(this);
 		this.iniciarComponentes();
 //		this.addMouseListener(this);
 	}
@@ -70,13 +73,13 @@ public class Ventana extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setTitle("Botones");
 
-		JPanel panel_btn = new JPanel();
-		panel_btn.setSize(this.getWidth(), this.getHeight());
-		panel_btn.setLocation(0, 0);
-		panel_btn.setLayout(null);
-		panel_btn.setBackground(Color.decode("#6786E7"));
+		panel = new JPanel();
+		panel.setSize(this.getWidth(), this.getHeight());
+		panel.setLocation(0, 0);
+		panel.setLayout(null);
+		panel.setBackground(Color.decode("#6786E7"));
 
-		panel_btn.addMouseListener(new MouseListener() {
+		panel.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -104,7 +107,7 @@ public class Ventana extends JFrame {
 					}
 				});
 
-				panel_btn.add(otro_boton);
+				panel.add(otro_boton);
 
 				getContentPane().repaint();
 				getContentPane().revalidate();
@@ -122,13 +125,12 @@ public class Ventana extends JFrame {
 				int g = (int) Math.floor(Math.random() * 255 + 1);
 				int b = (int) Math.floor(Math.random() * 255 + 1);
 
-				panel_btn.setBackground(new Color(r, g, b));
+				panel.setBackground(new Color(r, g, b));
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -157,20 +159,20 @@ public class Ventana extends JFrame {
 				otro_boton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						panel_btn.remove(otro_boton);
+						panel.remove(otro_boton);
 						getContentPane().repaint();
 					}
 				});
 
-				panel_btn.add(otro_boton);
+				panel.add(otro_boton);
 
 				getContentPane().repaint();
 				getContentPane().revalidate();
 			}
 		});
 
-		panel_btn.add(boton);
-		this.add(panel_btn);
+		panel.add(boton);
+		this.add(panel);
 	}
 
 	public void bordes(JPanel panel) {
@@ -877,5 +879,35 @@ public class Ventana extends JFrame {
 		admin.add(scroll_tabla);
 
 		this.add(admin);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println(e.getKeyCode() + "     " + e.getKeyChar());
+		if (e.getKeyCode() == 127) {
+			Component[] comp = panel.getComponents();
+			for (int i = 0; i < comp.length; i++) {
+				System.out.println(comp.getClass().toString());
+				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
+					JButton btn = (JButton) comp[i];
+					panel.remove(btn);
+				}
+			}
+			getContentPane().repaint();
+			getContentPane().revalidate();
+
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
