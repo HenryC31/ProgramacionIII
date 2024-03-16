@@ -890,6 +890,7 @@ public class Ventana extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode() + "     " + e.getKeyChar());
+//		Validar tecla Delete o Supr
 		if (e.getKeyCode() == 127) {
 			Component[] comp = panel.getComponents();
 			for (int i = 0; i < comp.length; i++) {
@@ -899,10 +900,20 @@ public class Ventana extends JFrame implements KeyListener {
 					panel.remove(btn);
 				}
 			}
-			getContentPane().repaint();
-			getContentPane().revalidate();
-
 		}
+//		Validar tecla W
+		if (e.getKeyCode() == 87) {
+			Component[] comp = panel.getComponents();
+			for (int i = 0; i < comp.length; i++) {
+				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
+					JButton btn = (JButton) comp[i];
+					btn.setSize(btn.getWidth() + 10, btn.getHeight() + 5);
+				}
+			}
+		}
+//		Revalidar y Repintar para que se actualice al instante
+		getContentPane().repaint();
+		getContentPane().revalidate();
 	}
 
 	@Override
