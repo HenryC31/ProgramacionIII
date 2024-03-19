@@ -901,16 +901,55 @@ public class Ventana extends JFrame implements KeyListener {
 				}
 			}
 		}
+
 //		Validar tecla W
 		if (e.getKeyCode() == 87) {
 			Component[] comp = panel.getComponents();
 			for (int i = 0; i < comp.length; i++) {
 				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
 					JButton btn = (JButton) comp[i];
-					btn.setSize(btn.getWidth() + 10, btn.getHeight() + 5);
+					btn.setLocation(btn.getX(), btn.getY() - 5);
+					;
 				}
 			}
 		}
+
+//		Validar tecla A
+		if (e.getKeyCode() == 65) {
+			Component[] comp = panel.getComponents();
+			for (int i = 0; i < comp.length; i++) {
+				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
+					JButton btn = (JButton) comp[i];
+					btn.setLocation(btn.getX() - 5, btn.getY());
+					;
+				}
+			}
+		}
+
+//		Validar tecla S
+		if (e.getKeyCode() == 83) {
+			Component[] comp = panel.getComponents();
+			for (int i = 0; i < comp.length; i++) {
+				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
+					JButton btn = (JButton) comp[i];
+					btn.setLocation(btn.getX(), btn.getY() + 5);
+					;
+				}
+			}
+		}
+
+//		Validar tecla D
+		if (e.getKeyCode() == 68) {
+			Component[] comp = panel.getComponents();
+			for (int i = 0; i < comp.length; i++) {
+				if (comp.getClass().toString().equals("class [Ljava.awt.Component;")) {
+					JButton btn = (JButton) comp[i];
+					btn.setLocation(btn.getX() + 5, btn.getY());
+					;
+				}
+			}
+		}
+
 //		Revalidar y Repintar para que se actualice al instante
 		getContentPane().repaint();
 		getContentPane().revalidate();
