@@ -63,7 +63,7 @@ public class Ventana extends JFrame implements KeyListener {
 //		this.user_login();
 //		this.calculadora_clase();
 //		this.interes();
-		this.botones();
+//		this.botones();
 		this.repaint();
 		this.validate();
 	}
