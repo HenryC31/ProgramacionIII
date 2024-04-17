@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 public class TableroDibujo extends JFrame implements KeyListener {
 
+	private int x = 375;
+	private int y = 300;
 	/**
 	 * 
 	 */
@@ -30,18 +32,12 @@ public class TableroDibujo extends JFrame implements KeyListener {
 	 */
 	public TableroDibujo() {
 		this.setVisible(true);
-		this.setBounds(100, 100, 842, 717);
+		this.setBounds(100, 100, 800, 700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initialize();
 		this.addKeyListener(this);
-	}
+		initialize();
 
-	public void paint(Graphics g) {
-		super.paint(g);
-		Graphics2D g2d = (Graphics2D) g;
-
-		g2d.fillRect(260, 200, 300, 200);
 	}
 
 	/**
@@ -58,12 +54,20 @@ public class TableroDibujo extends JFrame implements KeyListener {
 		JButton btnNewButton = new JButton("Reinicio");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		panel.add(btnNewButton);
-
 		JPanel panel_1 = new JPanel();
 
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 
 		requestFocus();
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+
+//		g2d.setColor(Color.blue);
+		g2d.fillRect(x, y, 50, 50);
 	}
 
 	@Override
@@ -75,6 +79,23 @@ public class TableroDibujo extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode() + "   " + e.getKeyChar());
+		switch (e.getKeyCode()) {
+		case 87: // w
+			y -= 10;
+			break;
+		case 65: // a
+			x -= 10;
+			break;
+		case 83: // s
+			y += 10;
+			break;
+		case 68: // d
+			x += 10;
+			break;
+		}
+		repaint();
+		revalidate();
+		update(getGraphics());
 	}
 
 	@Override
