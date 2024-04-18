@@ -15,6 +15,10 @@ public class TableroDibujo extends JFrame implements KeyListener {
 
 	private int x = 375;
 	private int y = 300;
+	Jugador jugador = new Jugador(x, y, 50, 50, "#32A175");
+	Jugador obst = new Jugador(500, 150, 50, 200, "#050505");
+	Jugador obst2 = new Jugador(100, 300, 70, 280, "#AA00FF");
+	Jugador[] obstaculos = { obst, obst2 };
 	/**
 	 * 
 	 */
@@ -48,7 +52,7 @@ public class TableroDibujo extends JFrame implements KeyListener {
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setVgap(20);
 		flowLayout.setHgap(10);
-		panel.setBackground(new Color(69, 46, 122));
+		panel.setBackground(new Color(64, 0, 128));
 		getContentPane().add(panel, BorderLayout.SOUTH);
 
 		JButton btnNewButton = new JButton("Reinicio");
@@ -58,6 +62,18 @@ public class TableroDibujo extends JFrame implements KeyListener {
 
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(64, 0, 128));
+		getContentPane().add(panel_2, BorderLayout.NORTH);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(64, 0, 128));
+		getContentPane().add(panel_3, BorderLayout.WEST);
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(64, 0, 128));
+		getContentPane().add(panel_4, BorderLayout.EAST);
+
 		requestFocus();
 	}
 
@@ -66,8 +82,14 @@ public class TableroDibujo extends JFrame implements KeyListener {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-//		g2d.setColor(Color.blue);
-		g2d.fillRect(x, y, 50, 50);
+		g2d.setColor(Color.decode(jugador.getColor()));
+		g2d.fillRect(jugador.getX(), jugador.getY(), jugador.getWidth(), jugador.getHeight());
+
+		g2d.setColor(Color.decode(obst.getColor()));
+		g2d.fillRect(obst.getX(), obst.getY(), obst.getWidth(), obst.getHeight());
+
+		g2d.setColor(Color.decode(obst2.getColor()));
+		g2d.fillRect(obst2.getX(), obst2.getY(), obst2.getWidth(), obst2.getHeight());
 	}
 
 	@Override
@@ -81,21 +103,23 @@ public class TableroDibujo extends JFrame implements KeyListener {
 		System.out.println(e.getKeyCode() + "   " + e.getKeyChar());
 		switch (e.getKeyCode()) {
 		case 87: // w
-			y -= 10;
+			jugador.setY(jugador.getY() - 10);
 			break;
 		case 65: // a
-			x -= 10;
+			jugador.setX(jugador.getX() - 10);
 			break;
 		case 83: // s
+			jugador.setY(jugador.getY() + 10);
 			y += 10;
 			break;
 		case 68: // d
+			jugador.setX(jugador.getX() + 10);
 			x += 10;
 			break;
 		}
+		if (jugador.colision(obstaculos))
+			System.out.println("Colisión");
 		repaint();
-		revalidate();
-		update(getGraphics());
 	}
 
 	@Override
