@@ -51,13 +51,27 @@ public class Jugador {
 		this.color = color;
 	}
 
-	public boolean colision(Jugador[] j) {
-		for (int i = 0; i < j.length; i++) {
-			if (this.x + this.width >= j[i].x && this.x <= j[i].x + j[i].width && this.y <= j[i].y + j[i].height
-					&& this.y + this.height >= j[i].y) {
-				return true;
+//	public boolean colision(Jugador[] j) {
+//		for (int i = 0; i < j.length; i++) {
+//			if (this.x + this.width >= j[i].x && this.x <= j[i].x + j[i].width && this.y <= j[i].y + j[i].height
+//					&& this.y + this.height >= j[i].y) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	public boolean colision(Jugador j) {
+
+		if (this.x + this.width > j.x) {
+			if (this.x < j.x + j.width) {
+				if (this.y < j.y + j.height) {
+					if (this.y + this.height > j.y) {
+						return true;
+					}
+				}
 			}
 		}
+
 		return false;
 	}
 
